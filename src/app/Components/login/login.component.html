@@ -1,0 +1,25 @@
+<head>
+    <title>
+        Registration
+    </title>
+</head>
+
+<div>
+    <form [formGroup]="FormLogin" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="Nickname"></label>
+            <input formControlName="Nickname" type="text">
+            <div *ngIf="FormLogin.controls['Nickname'].invalid && (FormLogin.controls['Nickname'].touched || FormLogin.controls['Nickname'].dirty)">
+                <span class="TextError" *ngIf="FormLogin.controls['Nickname']?.errors?.required ">Обязательное поле</span>
+            </div>
+
+            <label for="Password"></label>
+            <input formControlName="Password" type="text">
+            <div *ngIf="FormLogin.controls['Password'].invalid && (FormLogin.controls['Password'].touched || FormLogin.controls['Password'].dirty)">
+                <span class="TextError" *ngIf="FormLogin.controls['Password'].errors.invalidMsg">{{FormLogin.controls['Password'].errors.invalidMsg}}</span>
+                <span class="TextError" *ngIf="FormLogin.controls['Password']?.errors?.required ">Обязательное поле</span>
+            </div>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
