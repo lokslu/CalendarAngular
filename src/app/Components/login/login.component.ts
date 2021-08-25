@@ -29,15 +29,7 @@ export class LoginComponent implements OnInit {
     this.FormLogin = this.fb.group({
       "Nickname": [null, [Validators.required]],
       "Password": [null, [Validators.required,
-      this.validate.customPatternValid({ pattern: '(?=.*[^!@#$%^&*\\\n])[0-9a-zA-Zа-яёА-ЯЁ]{6,}', msg: "Спец символи запрещены" }),
-      this.validate.customPatternValid({ pattern: '(?=.*[A-Z])[0-9a-zA-Zа-яёА-ЯЁ!@#$%^&*\s ]{6,}', msg: "Пароль должен иметь хотя бы одну букву в вышем регистре" }),
-      this.validate.customPatternValid({ pattern: '(?=.*[0-9])[0-9a-zA-Zа-яёА-ЯЁ!@#$%^&*\s ]{6,}', msg: "Пароль должен иметь хотя бы одну цыфру" }),
-      this.validate.customPatternValid({ pattern: '(?=.*[a-z])[0-9a-zA-Z!@#$%^&*\s ]{6,}', msg: "Обезательно нужны латинские символы" }),
-      this.validate.customPatternValid({ pattern: '[0-9a-zA-Zа-яёА-ЯЁ!@#$%^&\'\"*/;:\s ]{6,}', msg: "Пароль должен иметь хотя бы 6 символов" })
-        //  Validators.pattern('[0-9a-zA-Zа-яёА-ЯЁ]{6,}'),
-        //  Validators.pattern('(?=.*[A-Z])[0-9a-zA-Z]{6,}'),
-        //  Validators.pattern('(?=.*[0-9])[0-9a-zA-Z]{6,}'),
-        //  Validators.pattern('(?=.*[a-z])[0-9a-zA-Z]{6,}')
+       
       ]]
     })
   }
