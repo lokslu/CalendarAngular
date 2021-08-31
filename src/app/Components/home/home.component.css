@@ -1,0 +1,39 @@
+.Home {
+    background: #F9F9FC;
+    height: 100%;
+}
+
+.day {
+    border: solid 1px #B5B5B5;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.dayWeek {
+    display: flex;
+    justify-content: center;
+    border: solid 1px #B5B5B5;
+    border-bottom: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #b5b5b5;
+}
+
+.dayWeek:not(:first-child) {
+    border-left: none;
+}
+
+.day:not(:first-child) {
+    border-top: none;
+    border-left: none;
+}
+
+.containerGrid {
+    background: #F9F9FC;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
