@@ -1,6 +1,6 @@
 export class EventModel {
     Id:string;
-    Time:string;
-    Data:Date;
+    Time:Date;
+    Data:string;
     OwnerId:string;
   }
