@@ -1,26 +1,24 @@
-<header class="p-3 bg-dark text-white">
+<header class="p-3 ">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a>
 
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-            </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-            </form>
-
-            <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
+            <button type="button" class="btn-arrow" (click)="SetLeftMonth()">
+                <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.30118 15.478L21.9474 0.853561C22.4868 0.284442 23.1603 0 23.9694 0C24.7784 0 25.4519 0.284756 25.9913 0.853561L27.6986 2.53865C28.2528 3.09282 28.53 3.76643 28.53 4.56019C28.53 5.33892 28.2529 6.02056 27.6986 6.60447L16.781 17.5L27.6991 28.418C28.2531 28.9722 28.5303 29.6458 28.5303 30.4396C28.5303 31.2183 28.2532 31.9002 27.6991 32.4839L25.9916 34.1687C25.4375 34.7229 24.7632 34.9999 23.9697 34.9999C23.1758 34.9999 22.5018 34.7229 21.9478 34.1687L7.30118 19.5442C6.74677 18.9602 6.46941 18.2787 6.46941 17.5C6.46933 16.7062 6.74677 16.0322 7.30118 15.478Z" fill="#372E4B"/>
+                </svg>
+            </button>
+            <button type="button" class="btn-arrow" (click)="SetRightMonth()">
+                <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M27.6988 15.478L13.0526 0.853561C12.5132 0.284442 11.8397 0 11.0306 0C10.2216 0 9.54807 0.284756 9.00869 0.853561L7.30141 2.53865C6.74717 3.09282 6.47004 3.76643 6.47004 4.56019C6.47004 5.33892 6.74709 6.02056 7.30141 6.60447L18.219 17.5L7.30094 28.418C6.74685 28.9722 6.46973 29.6458 6.46973 30.4396C6.46973 31.2183 6.74677 31.9002 7.30094 32.4839L9.00838 34.1687C9.56255 34.7229 10.2368 34.9999 11.0303 34.9999C11.8242 34.9999 12.4982 34.7229 13.0522 34.1687L27.6988 19.5442C28.2532 18.9602 28.5306 18.2787 28.5306 17.5C28.5307 16.7062 28.2532 16.0322 27.6988 15.478Z" fill="#372E4B"/>
+                </svg>
+            </button>
+            <button type="button" class="btn btn-primary" (click)="ResetNow()"> 
+                Now
+            </button>
+            <div class="px-2">
+                {{CurDate}}
             </div>
+
         </div>
     </div>
 </header>
