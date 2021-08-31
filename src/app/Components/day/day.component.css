@@ -1,0 +1,26 @@
+.Add-btn {
+    width: 35px;
+    height: 35px;
+    grid-column: 4;
+    grid-row: 4;
+    z-index: 0;
+}
+
+.numberDay {
+    grid-column: 1/5;
+    text-align: center;
+}
+
+.events {
+    grid-column: 1/5;
+    grid-row: 2/5;
+}
+
+.event {
+    background-color: darkorange;
+    border-radius: 5px;
+    margin: 3px;
+    overflow: hidden;
+    padding: 2px;
+    font-size: 14px;
+}

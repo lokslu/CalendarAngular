@@ -16,6 +16,7 @@ import { AuthService } from 'src/Api/AuthServise';
 
 import { HeaderInterceptor } from './HaederInterceptor';
 import { AutorizateGuard } from './Guards/AutorizateGuard';
+import { DayComponent } from './Components/day/day.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AutorizateGuard } from './Guards/AutorizateGuard';
     RegistrationComponent,
     LoginComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    DayComponent
   ],
   imports: [
     HttpClientModule,
