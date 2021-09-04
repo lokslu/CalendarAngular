@@ -1,9 +1,15 @@
 .Add-btn {
-    width: 35px;
-    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-column: 4;
     grid-row: 4;
     z-index: 0;
+    transition: 0.1s;
+}
+
+.Add-btn:hover {
+    transform: scale(1.1);
 }
 
 .numberDay {
@@ -17,10 +23,35 @@
 }
 
 .event {
-    background-color: darkorange;
+    background-color: #e2e0de;
     border-radius: 5px;
     margin: 3px;
     overflow: hidden;
-    padding: 2px;
+    padding: 4px;
     font-size: 14px;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.event:hover {
+    background-color: #bfbfbf;
+}
+
+.SeeMore {
+    text-align: center;
+    background-color: cadetblue;
+    border-radius: 5px;
+    margin: 3px;
+    margin-left: 20px;
+    padding: 2px 4px;
+    font-size: 14px;
+}
+
+.SeeMoreContainer {
+    z-index: 0;
+    grid-column: 1/4;
+    grid-row: 4/5;
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
