@@ -76,6 +76,5 @@ export class DayComponent implements OnInit {
   }
   public openModalSeeMore(TemplateModal)
   {const modalRef = this.modalService.open(TemplateModal);
-    modalRef.componentInstance.Events = this.Day.Events;
   }
 }
