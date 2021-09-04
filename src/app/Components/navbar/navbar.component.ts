@@ -19,10 +19,11 @@ export class NavbarComponent implements OnInit {
   public ResetNow()
   {
     this.Now.setTime(new Date().getTime());
+    this.Now.setHours(12, 0, 0, 0);
+
     this.change.emit()
     this.CurDate = this.NowDate();
-    console.log(this.Now)
-
+    
 
   }
   public SetLeftMonth() {
