@@ -2,5 +2,5 @@ export class EventModel {
     Id:string;
     Time:Date;
     Data:string;
-    OwnerId:string;
+    
   }
