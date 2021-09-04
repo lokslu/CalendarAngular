@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Changing event</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="event">Event</label>
+            <div class="input-group">
+                <input name="event" class="form-control" [(ngModel)]="ChangedEvent.Data" (ngModelChange)="ValidEvent()">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer" style="justify-content: space-between;">
+    <button type="button" class="btn btn-danger" (click)="modal.close('Delete')">Delete</button>
+    <button [disabled]="!validEvent" type="button" class="btn btn-outline-dark" (click)="modal.close('Change')">Change</button>
+</div>
