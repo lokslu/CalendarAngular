@@ -23,6 +23,7 @@ import { ChangeEventDayModalComponent } from './Components/change-event-day-moda
 import { NewEventDayModalComponent } from './Components/new-event-day-modal/new-event-day-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ModalSeeMoreComponent } from './Components/modal-see-more/modal-see-more.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     NavbarComponent,
     DayComponent,
     ChangeEventDayModalComponent,
-    NewEventDayModalComponent
+    NewEventDayModalComponent,
+    ModalSeeMoreComponent
   ],
   imports: [
     MatSnackBarModule,
