@@ -1,8 +1,9 @@
 import { NodeWithI18n } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { EventService } from 'src/Api/EventServise';
 import { EventModel } from 'src/app/Models/EventModel';
 import { DayData } from 'src/app/Services/DayData';
-import { LoginComponent } from '../login/login.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,8 @@ export class HomeComponent implements OnInit {
 
   public CurentMonth: Array<DayData>;
 
-  constructor( ) { }
-// @ViewChild('nav', { read: ElementRef }) nav:ElementRef|undefined;
+  constructor(private EventS: EventService, private snackBar: MatSnackBar) { }
+  // @ViewChild('nav', { read: ElementRef }) nav:ElementRef|undefined;
 
   private StartDate: Date;
   private EndDate: Date;
@@ -67,10 +68,10 @@ export class HomeComponent implements OnInit {
 
     }
   }
-  
- 
+
+
   // ngAfterViewInit() {
-    
+
   //   console.log(this.nav.nativeElement.offsetHeight);
   //   console.log(window.innerHeight, this.nav.nativeElement.firstChild.offsetHeight);
   // }
@@ -84,8 +85,7 @@ export class HomeComponent implements OnInit {
 
   // }
 
-  public InitialCurrentMonth()
-  {
+  public InitialCurrentMonth() {
     this.IntiStartDate();
     this.InitEndDate();
 
@@ -96,6 +96,7 @@ export class HomeComponent implements OnInit {
 
 
     this.CurentMonth = new Array<DayData>();
+
     for (let i = 0; i < numberDay + 1; i++) {
 
       let newDate = new Date(this.StartDate);
@@ -111,39 +112,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.AllEvents = new Array<EventModel>();//получение всех событий
-
     this.Now = new Date();
-    this.Now.setHours(0, 0, 0, 0);
-    this.InitialCurrentMonth();
-    
-    
-    // this.AllEvents.sort((a, b) => {
-    //   let t1: Date = new Date(b.Time)
-    //   let t2: Date = new Date(a.Time)
-    //   return t1.getTime() - t2.getTime();
-    // });
+    this.Now.setHours(12, 0, 0, 0);
 
-    // this.CurentMonth = new Array<Array<DayData>>();
+    this.EventS.GetAll().subscribe(
+      (Data: Array<EventModel>) => {
+        this.AllEvents = Data.map(x => {
+          x.Time = new Date(x.Time);
+          return x;
+        });
+        this.InitialCurrentMonth();
+      }
+    )
 
-    // for (let i = 0; i < (numberDay+1)/7; i++) {
-    //   this.CurentMonth[i]=new Array<DayData>();
-    //   for (let j = 0; j < 7; j++) {
 
-    //     let newDate = new Date(this.StartDate);
-    //     newDate.setDate(newDate.getDate() +(i*7)+j)
-
-    //     this.CurentMonth[i][j]=new DayData(
-    //            newDate,
-    //            this.AllEvents.filter(x => this.EqualityDate(x.Time, newDate))
-    //          );
-    //   }
-
-    // }
-
-   
   }
-  
+
 
   private BetweenDate(TimeStart: Date, TimeEnd: Date, CurentTime: Date) {
     let Y: boolean = TimeStart.getFullYear() <= CurentTime.getFullYear() && CurentTime.getFullYear() <= TimeEnd.getFullYear();
@@ -158,6 +142,47 @@ export class HomeComponent implements OnInit {
     return Y && M && D;
   }
 
+  public AddEvent(newEvent: EventModel) {
+    this.EventS.AddEvent(newEvent).subscribe(
+      (Id: string) => {
+        newEvent.Id = Id;
+        this.snackBar.open("Event created", "okey",{
+          duration: 6000,
+        });
+
+      },
+      (error) => { }
+    )
+    this.AllEvents.unshift(newEvent);
+  }
+  public DeleteEvent(Id: string) {
+    let index = this.AllEvents.indexOf(this.AllEvents.filter(x => x.Id == Id)[0])
+    this.AllEvents.splice(index, 1);
+    this.EventS.DelateEvent(Id).subscribe(
+      (ok) => {
+        this.snackBar.open("Event deleted", "okey",{
+          duration: 6000,
+        });
+        
+       },
+      (error) => { }
+    )
+  }
+
+  public ChangeEvent(ChangedEvent: EventModel) {
+    this.AllEvents.filter(x => x.Id == ChangedEvent.Id)[0].Data = ChangedEvent.Data;
+    this.EventS.ChangeEvent(ChangedEvent).subscribe(
+      (ok) => {
+        this.snackBar.open("Event changed", "okey",{
+          duration: 6000,
+        });
+
+      },
+      (error) => {
+
+       }
+    )
+  }
 
 
 }

@@ -7,9 +7,14 @@
     border: solid 1px #B5B5B5;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: 1fr repeat(3, 2fr);
     white-space: nowrap;
     overflow: hidden;
+}
+
+.day:not(:first-child) {
+    border-top: none;
+    border-left: none;
 }
 
 .dayWeek {
@@ -23,11 +28,6 @@
 }
 
 .dayWeek:not(:first-child) {
-    border-left: none;
-}
-
-.day:not(:first-child) {
-    border-top: none;
     border-left: none;
 }
 

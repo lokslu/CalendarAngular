@@ -1,11 +1,6 @@
 <div class="Home">
     <app-navbar #nav [Now]="Now" (change)="InitialCurrentMonth()"></app-navbar>
-    <!-- <div class="rowDays" *ngFor="let item of CurentMonth">
 
-    <app-day class="day" *ngFor="let item2 of item " [Day]="item2">
-    </app-day>
-
-</div> -->
     <div class="containerGrid" [style.grid-template-rows]="'auto repeat('+numberRow+', 1fr)'">
         <div class="dayWeek" style="border-left:none ;">Mon</div>
         <div class="dayWeek">Tue</div>
@@ -14,7 +9,7 @@
         <div class="dayWeek">Fri</div>
         <div class="dayWeek">Sat</div>
         <div class="dayWeek">Sun</div>
-        <app-day class="day" *ngFor="let item of CurentMonth " [Day]="item">
+        <app-day class="day visingCont" *ngFor="let item of CurentMonth " [Day]="item" (addEvent)="AddEvent($event)" (changeEvent)="ChangeEvent($event)" (deleteEvent)="DeleteEvent($event)">
         </app-day>
     </div>
 </div>
