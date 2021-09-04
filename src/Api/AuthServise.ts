@@ -34,7 +34,7 @@ export class AuthService {
     //выход
     public logout() {
         localStorage.removeItem("token");
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/login');
     }
     
     // проверка токена на валидность по времени

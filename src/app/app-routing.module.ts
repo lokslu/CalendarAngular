@@ -10,7 +10,6 @@ const routes: Routes = [
   {path:"",component:HomeComponent ,canActivate:[AutorizateGuard]},
   {path:"registration",component:RegistrationComponent},
   {path:"login",component:LoginComponent},
-  {path:"nav",component:NavbarComponent},
   {path:"**",redirectTo:'/'}
  ];
 
