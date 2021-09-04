@@ -3,3 +3,16 @@
     background: none;
     border: none;
 }
+
+.logout {
+    border: 0;
+    background: none;
+    padding: 5px 9px;
+    transition: 0.2s;
+    margin-left: auto;
+}
+
+.logout:hover {
+    border-radius: 8px;
+    background: #d4d4d4;
+}

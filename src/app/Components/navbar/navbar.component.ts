@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/Api/AuthServise';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private AuthS:AuthService) { }
   @Input() Now: Date;
   @Output() change = new EventEmitter();
   public CurDate: string;
@@ -23,7 +24,7 @@ export class NavbarComponent implements OnInit {
 
     this.change.emit()
     this.CurDate = this.NowDate();
-    
+
 
   }
   public SetLeftMonth() {
@@ -44,5 +45,9 @@ export class NavbarComponent implements OnInit {
   }
   public NowDate() {
     return this.Now.toLocaleDateString('en', { year: 'numeric', month: 'long' })
+  }
+  logout()
+  {
+    this.AuthS.logout();
   }
 }
