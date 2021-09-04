@@ -19,32 +19,35 @@ export class DayComponent implements OnInit {
   @Output() changeEvent = new EventEmitter();
   @Output() deleteEvent = new EventEmitter();
   @Input() Day: DayData;
-  constructor(private modalService: NgbModal,private eventS:EventService) { }
+  constructor(private modalService: NgbModal, private eventS: EventService) { }
 
   ngOnInit(): void {
 
-    // for (let i = 0; i < 6; i++) {
-    //   this.Day.Events[i] = new EventModel();
-    //   this.Day.Events[i].Data = "sfgdf,lgf sdgd fgd hrh dfgfd "
-    // }
+    this.chekedDisplayMore();
 
+
+  }
+  chekedDisplayMore() {
     if (this.Day.Events.length > 4) {
       this.DisplayMore = true;
+    }
+    else {
+      this.DisplayMore = false;
 
     }
-
   }
 
   public AddEvent() {
     const modalRef = this.modalService.open(NewEventDayModalComponent);
-    let NewEvent=new EventModel();
-    NewEvent.Time=this.Day.Time;
-    modalRef.componentInstance.NewEvent=NewEvent;
+    let NewEvent = new EventModel();
+    NewEvent.Time = this.Day.Time;
+    modalRef.componentInstance.NewEvent = NewEvent;
     modalRef.result.then(
       () => {
         this.addEvent.emit(NewEvent);
-         this.Day.Events.unshift(NewEvent); 
-         },
+        this.Day.Events.unshift(NewEvent);
+        this.chekedDisplayMore();
+      },
       () => { }
     )
 
@@ -52,18 +55,20 @@ export class DayComponent implements OnInit {
   public ChangeEvent(event: EventModel, index: number) {
 
     const modalRef = this.modalService.open(ChangeEventDayModalComponent);
-    const ChangedEvent= Object.assign({}, event);
-    modalRef.componentInstance.ChangedEvent =ChangedEvent;
+    const ChangedEvent = Object.assign({}, event);
+    modalRef.componentInstance.ChangedEvent = ChangedEvent;
 
 
     modalRef.closed.subscribe((state) => {
       if (state === "Delete") {
         this.deleteEvent.emit(ChangedEvent.Id)
         this.Day.Events.splice(index, 1);
+        this.chekedDisplayMore();
+
       }
       if (state === "Change") {
-          this.Day.Events[index] = ChangedEvent;
-          this.changeEvent.emit(ChangedEvent);
+        this.Day.Events[index] = ChangedEvent;
+        this.changeEvent.emit(ChangedEvent);
       }
 
     })
