@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/Api/AuthServise';
@@ -22,7 +23,8 @@ export class RegistrationComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private AuthS: AuthService,
-    private validate: ValidateService
+    private validate: ValidateService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -54,16 +56,24 @@ export class RegistrationComponent implements OnInit {
     registerModel.Password = this.FormRegistration.value.Password;
 
     this.AuthS.register(registerModel).subscribe((data: any) => {
-      
+
       this.AuthS.SetToken(data.token);
       this.router.navigateByUrl("/");
       this.registered = false;
       // this.router.navigateByUrl('/user');
     }, (error) => {
+      if (error.status == 401) {
+        this.snackBar.open("Password or username is incorrect, please try again", "okey", {
+          duration: 6000,
+        });
+      }
+      else {
+        this.snackBar.open("Something went wrong, please try again", "okey", {
+          duration: 6000,
 
-      // this.snackBar.open(error.error,"", {
-      //   duration: 6000,
-      // });
+        });
+      }
+      this.initForm();
 
       console.log(error);
       this.registered = false;

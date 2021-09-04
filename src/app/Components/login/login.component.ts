@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/Api/AuthServise';
 import { ValidateService } from 'src/app/Services/ValidateService';
 import { UserModel } from "src/app/Models/UserModel";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private AuthS: AuthService,
     private router: Router,
-    private validate: ValidateService) { }
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.FormLogin = this.fb.group({
       "Nickname": [null, [Validators.required]],
       "Password": [null, [Validators.required,
-       
+
       ]]
     })
   }
@@ -45,13 +46,22 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', data.token);
       this.logined = false;
       this.router.navigateByUrl("/");
-      // this.router.navigateByUrl('/user');
     }, (error) => {
+      if (error.status == 401) {
+        this.snackBar.open("Password or username is incorrect, please try again", "okey", {
+          duration: 6000,
+        });
+      }
+      else {
+        this.snackBar.open("Something went wrong, please try again", "okey", {
+          duration: 6000,
+        });
+      }
+        this.initForm();
 
-      console.log(error);
-      this.logined = false;
-      this.error = true;
-
+        console.log(error);
+        this.logined = false;
+        this.error = true;
     });
   }
 
