@@ -38,20 +38,13 @@
 }
 
 .SeeMore {
-    text-align: center;
-    background-color: cadetblue;
-    border-radius: 5px;
-    margin: 3px;
-    margin-left: 20px;
-    padding: 2px 4px;
-    font-size: 14px;
-}
-
-.SeeMoreContainer {
     z-index: 0;
     grid-column: 1/4;
     grid-row: 4/5;
-    display: flex;
-    justify-content: left;
-    align-items: center;
+    background-color: #a7bdf5
+}
+
+.SeeMore:hover {
+    background-color: #7e8eb4;
+    color: rgb(234, 239, 250);
 }

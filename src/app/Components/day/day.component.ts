@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EventModel } from 'src/app/Models/EventModel';
 import { DayData } from 'src/app/Services/DayData';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -52,10 +52,11 @@ export class DayComponent implements OnInit {
     )
 
   }
-  public ChangeEvent(event: EventModel, index: number) {
+  
+  public ChangeEvent(index: number) {
 
     const modalRef = this.modalService.open(ChangeEventDayModalComponent);
-    const ChangedEvent = Object.assign({}, event);
+    const ChangedEvent = Object.assign({}, this.Day.Events[index]);
     modalRef.componentInstance.ChangedEvent = ChangedEvent;
 
 
@@ -72,5 +73,9 @@ export class DayComponent implements OnInit {
       }
 
     })
+  }
+  public openModalSeeMore(TemplateModal)
+  {const modalRef = this.modalService.open(TemplateModal);
+    modalRef.componentInstance.Events = this.Day.Events;
   }
 }
